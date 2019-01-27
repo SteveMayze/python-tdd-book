@@ -6,3 +6,4 @@ __pycache__
 *.sublime-*
 /static
 .env
+functional_tests/screendumps
