@@ -127,5 +127,3 @@ class FunctionalTest(StaticLiveServerTestCase):
 		item_number = num_rows + 1
 		self.wait_for_row_in_list_table(f'{item_number}: {item_text}')
 
-
-
