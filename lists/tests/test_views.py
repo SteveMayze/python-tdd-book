@@ -173,6 +173,16 @@ class MyListsTest(TestCase):
 		response = self.client.get('/lists/users/a@b.com/')
 		self.assertEqual(response.context['owner'], correct_user)
 
+class ShareListTest(TestCase):
+	def test_post_redirects_to_lists_page(self):
+		list_ = List.objects.create()
+		response = self.client.post(
+			f'/lists/{list_.id}/share',
+			data = {'sharee': 'a@b.com'}
+		)
+		self.assertRedirects(response, f'/lists/{list_.id}/')
+
+
 @patch('lists.views.NewListForm')
 class NewListViewUnitTest(unittest.TestCase):
 
@@ -238,3 +248,4 @@ class NewListViewUnitTest(unittest.TestCase):
 
 		self.assertEqual(response, mock_redirect.return_value)
 		mock_redirect.assert_called_once_with(mock_form.save.return_value)
+
