@@ -44,7 +44,9 @@ def my_lists(request, email):
 
 def share_list(request, list_id):
 	list_ = List.objects.get(id=list_id)
-	# sharee = request.POST['sharee']
+	sharee = request.POST['sharee']
+	if request.method == 'POST':
+		list_.shared_with.add(sharee)
 	# form = ExistingListItemForm(for_list=list_)
 	# return render(request, 'list.html', {'owner': list_.owner,'form': form})
 	# return render(request, 'list.html', {'owner': list_.owner })

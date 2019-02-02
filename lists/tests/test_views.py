@@ -13,6 +13,7 @@ from lists.views import home_page
 from lists.views import new_list
 from unittest.mock import patch, Mock
 import unittest
+from unittest import skip
 
 
 User = get_user_model()
@@ -181,6 +182,16 @@ class ShareListTest(TestCase):
 			data = {'sharee': 'a@b.com'}
 		)
 		self.assertRedirects(response, f'/lists/{list_.id}/')
+
+	def test_post_adds_user_to_shared_with(self):
+		list_ = List.objects.create()
+		user_ = User.objects.create(email='b@b.com')
+		response = self.client.post(
+			f'/lists/{list_.id}/share',
+			data = {'sharee': 'b@b.com'}
+		)
+		self.assertIn(user_, list_.shared_with.all())
+
 
 
 @patch('lists.views.NewListForm')
