@@ -1,6 +1,8 @@
 from selenium import webdriver
 from .base import FunctionalTest
 from .list_page import ListPage
+from .my_lists_page import MyListsPage
+
 def quit_if_possible(browser):
 	try:
 		browser.quit()
