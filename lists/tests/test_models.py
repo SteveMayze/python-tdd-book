@@ -100,3 +100,14 @@ class ListModelTest(TestCase):
 		list_.shared_with.add(sharee.email)
 
 		self.assertIn(sharee, list_.shared_with.all())
+
+
+	def test_user_can_access_shared_lists(self):
+		sharer = User.objects.create(email='a@b.com')
+		sharee = User.objects.create(email='b@b.com')
+		list_ = List.create_new(first_item_text='new item text', owner=sharer)
+
+		list_.shared_with.add(sharee.email)
+
+		self.assertIn(list_, sharee.shared_with.all())
+
