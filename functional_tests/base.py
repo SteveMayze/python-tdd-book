@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 from django.conf import settings
 from .management.commands.create_session import create_pre_authenticated_session
+from .server_tools import create_session_on_server
 
 
 from .server_tools import reset_database

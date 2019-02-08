@@ -1,5 +1,4 @@
 from .base import FunctionalTest
-from .server_tools import create_session_on_server
 
 from .list_page import ListPage
 from .my_lists_page import MyListsPage
